@@ -1,17 +1,41 @@
-name: Build LaTeX document
-on: [push]
+name: Build and Deploy LaTeX PDF
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Git repository
+      - name: Check out repository
         uses: actions/checkout@v4
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-      - name: Upload PDF file
-        uses: actions/upload-artifact@v4
-        with:
-          name: PDF
-          path: main.pdf
+
+      - name: Deploy PDF to GitHub Pages
+        run: |
+          # Setup
+          mkdir -p public
+          mv main.pdf public/
+          
+          # Configure Git
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+          # Fetch gh-pages branch or create it if it doesn't exist
+          git fetch origin gh-pages || git checkout --orphan gh-pages
+          git checkout gh-pages
+          git rm -rf . # Clean old files
+
+          # Move new PDF
+          mv public/main.pdf ./main.pdf
+
+          # Commit and push
+          git add main.pdf
+          git commit -m "Update compiled PDF" || echo "No changes to commit"
+          git push --force https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git gh-pages
