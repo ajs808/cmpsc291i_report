@@ -38,4 +38,4 @@ jobs:
           # Commit and push
           git add main.pdf
           git commit -m "Update compiled PDF" || echo "No changes to commit"
-          git push --force https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git gh-pages
+          git push --force https://${{ secrets.GH_PAT }}@github.com/${{ github.repository }}.git gh-pages
