@@ -99,7 +99,7 @@
 
 
 \begin{abstract} 
-  Reward hacking is a significant concern in the training of advanced reinforcement learning (RL) agents. In complex environments and tasks, it is challenging to specify a perfect reward function that fully captures the intended human behaviors across all edge cases. RL agents that exploit misspecifications in the reward function can exhibit undesirable and potentially harmful behaviors. In this work, we investigate the problem of reward hacking and propose a novel approach that improves the approximation of the true reward function by incorporating feedback from Vision-Language Models (VLMs) into the training loss. 
+  Choosing good reward functions in reinforcement learning (RL) is notoriously difficult. Oftentimes, the true reward function is very sparse, as in a game of chess that gives a reward signal only when the agent wins. In other scenarios, such as preference optimization for large language models (LLMs) using algorithms like reinforcement learning from human feedback (RLHF) \citep{christiano2017deep}, the true reward function—alignment to human preferences—is impossible to specify. As a result, RL techniques typically employ proxy rewards, which provide finer-grained feedback loops and are easier to learn. However, these proxy rewards can be misspecified; RL agents that exploit misspecifications in the proxy reward function can exhibit undesirable and potentially harmful behaviors. According to \citet{skalse2022defining}, this type of behavior—where an agent attains a high proxy reward but does not accomplish the human-intended goal—is referred to as \textit{reward hacking}. In this work, we investigate the problem of reward hacking and propose a novel approach that improves the approximation of the true reward function by incorporating feedback from Vision-Language Models (VLMs) into the training loss.
 \end{abstract}
 
 \section{Introduction}
@@ -116,5 +116,6 @@ Lorem
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{plain}
 \bibliography{references} 
+
 
 \end{document}
