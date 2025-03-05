@@ -16,7 +16,7 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
+          args: "-pdf -bibtex -file-line-error -halt-on-error -interaction=nonstopmode"
         env:
           TEXINPUTS: ".:"
 
