@@ -111,7 +111,16 @@ Reward hacking can manifest in both benign and harmful ways. In some cases, agen
 In this work, we propose an approach that leverages \textit{Vision-Language Models (VLMs)} to mitigate reward hacking at training time. VLMs, which process both visual and textual information, have shown strong generalization capabilities in tasks requiring multimodal reasoning. We explore how feedback from VLMs can be integrated into the RL training pipeline to improve alignment between proxy rewards and the true underlying objective. By incorporating VLM-based signals into the training loss, we aim to reduce instances of reward hacking and enhance the overall robustness of RL agents.
 
 \section{Background}
-Example citations \cite{amodei2016concrete} \cite{pan2022effectsrewardmisspecificationmapping} \cite{skalse2022definingcharacterizingrewardhacking}
+\subsection{Formalizing Reward Hacking}
+Skalse et al. \cite{skalse2022definingcharacterizingrewardhacking} formally define reward hacking as a situation where a policy improves according to the proxy reward, while worsening according to the true reward. They demonstrate that unhackable reward functions are rare, as any reward function designed for practical use is susceptible to some degree of exploitation. 
+
+\subsection{VLMs in Reinforcement Learning}
+Recent work has explored the potential of VLMs as reward sources for reinforcement learning, as they can provide meaningful, human-aligned evaluations of agent behavior without requiring manually crafted reward functions.
+
+A recent study by Baumli et al. \cite{baumli2024visionlanguagemodelssourcerewards} investigates the feasibility of using off-the-shef VLMs as sources of reward signals in RL. Their findings suggest that larger VLMs provide more accurate and generizable rewards, leading to improved agent performance in visually guided tasks. This approach presents a compelling alternative to traditional proxy rewards, as VLMs inherently capture semantic and contextual understanding of tasks. However, challenges remain in ensuring the reliability of VLM-derived rewards, as these models can exhibit inconsistencies in certain environments.
+
+\subsection{Using VLMs to Mitigate Reward Hacking}
+Given their strong reasoning capabilities, VLMs offer a promising avenue for improving reward design in RL. Unlike traditionally-defined rewards, which are prone to misspecification, VLMs provide an adaptive and context-aware evaluation mechanism. Baumli et al. demonstrate that VLMs can effectively assess whether an agent's behavior aligns with an objective specified in natural language. By incorporating VLM-based feedback into the reward function, we hypothesize that RL agents can be guided toward behaviors that better align with human intention. By integrating VLM-based signals into the RL pipelie, we aim to establish a more reliable and scalable method for mitigating reward hacking. 
 
 
 \section*{Unlabeled Section}
