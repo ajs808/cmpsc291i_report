@@ -40,7 +40,7 @@
 \usepackage{xcolor}         % colors
 
 
-\title{Reward Hacking Mitigation}
+\title{VLMs for Reward Hacking Mitigation}
 
 
 % The \author macro works with any number of authors. There are two commands
@@ -121,6 +121,24 @@ A recent study by Baumli et al. \cite{baumli2024visionlanguagemodelssourcereward
 
 \subsection{Using VLMs to Mitigate Reward Hacking}
 Given their strong reasoning capabilities, VLMs offer a promising avenue for improving reward design in RL. Unlike traditionally-defined rewards, which are prone to misspecification, VLMs provide an adaptive and context-aware evaluation mechanism. Baumli et al. demonstrate that VLMs can effectively assess whether an agent's behavior aligns with an objective specified in natural language. By incorporating VLM-based feedback into the reward function, we hypothesize that RL agents can be guided toward behaviors that better align with human intention. By integrating VLM-based signals into the RL pipelie, we aim to establish a more reliable and scalable method for mitigating reward hacking. 
+
+% this section can go at the end
+% Project Retrospective (all projects):
+
+% What was the initial project goal(s) in your proposal presentation, including the checkpoint?
+% Did you change the project goal(s) during the quarter? If so, why?
+% How did you organize the subtasks w.r.t. group members and time? How did it work out?
+% What was the biggest challenge you faced in this project?
+% Which parts of the project are you most pleased with? Why?
+% What would you do differently if you could restart the project?
+% Your plans for continuing the project e.g. into a paper submission, if any.
+\section{Project Retrospective}
+\subsection{Initial Project Goal}
+Our initial project idea was to use anomaly detection techniques as a means of detecting and flagging reward hacking during training time. We had hoped to create a dataset of healthy trajectories (i.e., those that do not exhibit reward hacking), and use a CNN-based anomaly detector to vet learned trajectories at training time. 
+
+As we started to experiment with different tasks, we realized that it would be difficult and time-consuming to come up with representative datasets to train the anomaly detector on. Additionally, we realized that this wouldn't necessarily be as generalizable as we had hoped, as some tasks have enough variance in their healthy trajectories that it would make anomaly detection challenging. 
+
+Given these challenges, we began exploring alternative approaches that could provide a more generalizable and easily-scalable solution. Instead of relying on manually curated datasets of healthy trajectories, we sought a method that could leverage external knowledge to evaluate behaviors with more flexibility. This led us to consider VLMs, which are pre-trained on vast amounts of real-world data and encode a rich understanding of physical dynamics, common-sense reasoning, and human expectations about movement and behavior. Additionally, since VLMs can process both visual and textual inputs, they offered a promising way to incorporate human-like evaluation into the reinforcement loop, but without the human.
 
 
 \section*{Unlabeled Section}
