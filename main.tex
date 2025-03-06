@@ -133,12 +133,17 @@ Given their strong reasoning capabilities, VLMs offer a promising avenue for imp
 % What would you do differently if you could restart the project?
 % Your plans for continuing the project e.g. into a paper submission, if any.
 \section{Project Retrospective}
-\subsection{Initial Project Goal}
-Our initial project idea was to use anomaly detection techniques as a means of detecting and flagging reward hacking during training time. We had hoped to create a dataset of healthy trajectories (i.e., those that do not exhibit reward hacking), and use a CNN-based anomaly detector to vet learned trajectories at training time. 
+\subsection{Project Goals}
+Our initial project idea was to use anomaly detection techniques as a means of detecting and flagging reward hacking during training time. We had hoped to create a dataset of healthy trajectories (i.e., those that do not exhibit reward hacking), and use a CNN-based anomaly detector to vet learned trajectories at training time. We hoped to have a dataset of good trajectories to train an anomaly detector on by the checkpoint date, and to have the complete RL pipeline by the final due date.
 
 As we started to experiment with different tasks, we realized that it would be difficult and time-consuming to come up with representative datasets to train the anomaly detector on. Additionally, we realized that this wouldn't necessarily be as generalizable as we had hoped, as some tasks have enough variance in their healthy trajectories that it would make anomaly detection challenging. 
 
-Given these challenges, we began exploring alternative approaches that could provide a more generalizable and easily-scalable solution. Instead of relying on manually curated datasets of healthy trajectories, we sought a method that could leverage external knowledge to evaluate behaviors with more flexibility. This led us to consider VLMs, which are pre-trained on vast amounts of real-world data and encode a rich understanding of physical dynamics, common-sense reasoning, and human expectations about movement and behavior. Additionally, since VLMs can process both visual and textual inputs, they offered a promising way to incorporate human-like evaluation into the reinforcement loop, but without the human.
+Given these challenges, we began exploring alternative approaches that could provide a more generalizable and easily-scalable solution. Instead of relying on manually curated datasets of healthy trajectories, we sought a method that could leverage external knowledge to evaluate behaviors with more flexibility. This led us to consider VLMs, which are pre-trained on vast amounts of real-world data and encode a rich understanding of physical dynamics, common-sense reasoning, and human expectations about movement and behavior. Additionally, since VLMs can process both visual and textual inputs, they offered a promising way to incorporate human-like evaluation into the reinforcement loop, but without the human. We modified our milestone goals: by the checkpoint date, we aimed to manually induce reward hacking in several different environments and tasks; by the final due date, we still aimed to have the full RL pipeline finished, but using a VLM to modify the reward instead of an anomaly detector.
+
+\subsection{Project Organization}
+
+\subsection{Challenges}
+
 
 
 \section*{Unlabeled Section}
