@@ -143,7 +143,11 @@ Given these challenges, we began exploring alternative approaches that could pro
 \subsection{Project Organization}
 
 \subsection{Challenges}
+\subsubsection{Hosted vs. Local VLM Deployment}
+Using a hosted VLM API (e.g., OpenAI's GPT models) introduced significant cost per query, especially since image inputs consume substantial tokens. Given the iterative nature of RL training, these costs quickly became prohibitive. Running a VLM locally avoids API costs but requires sufficient compute and storage. We found that the stronger models exceeded our available resources (personal laptops and CSIL storage), while models we could run locally lacked the accuracy needed to reliably detect reward hacking.
 
+\subsubsection{Frequency of VLM Feedback}
+Ideally, VLM evaluation would occur at every training step, but this incurs heavy computational overhead. Each step requires rolling out a trajectory, rendering it into a video and then image format, and querying the VLM. All of this substantially increases training time. If using an API, frequent queries further amplify costs. Reducing VLM feedback frequency (e.g., querying only every $x$ steps) mitigates these issues, but provides insufficient signal to meaningfully influence policy learning. Balancing these trade-offs was a challenge throughout our project execution, and remains an area to be explored.
 
 
 \section*{Unlabeled Section}
