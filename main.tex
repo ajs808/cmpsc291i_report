@@ -131,6 +131,8 @@ To investigate the feasibility of using VLMs to mitigate reward hacking at train
 
 \item \textbf{MuJoCo Ant Jumping}: The intended task is for the ant agent to learn to jump straight up, with a proxy reward defined to maximize time spent with the torso in the air. The agent instead learned how to flip and "cartwheel", maximizing time spent with the torso above a height threshold, while never performing a true jumping motion.
 
+\item \textbf{MuJoCo Swimmer}: The intended task is for the worm-like agent to learn how to locomote efficiently. We observed reward hacking when the control cost was lowered significantly: the agent learned to jitter its limbs in an unrealistic manner to move forward.
+
 \item \textbf{Box2D Car Racing}: The car is tasked with navigating a race track efficiently. Instead, due to a reward function that emphasized velocity without harshly penalizing off-track movement, the agent learned to drive in tight circles near the starting area, accumulating reward without progressing through the course.
 \end{itemize}
 
@@ -142,6 +144,12 @@ To ensure compatibility with VLMs, we processed learned trajectories by rolling 
 During training, we integrated VLM feedback as a term in the total reward function within PPO. The VLM was prompted with the task description, the collage, and instructions to output a scalar value between 0 and 1, where 0 indicated extreme reward hacking and 1 denoted a trajectory completely free of reward hacking. The VLM output scalar was then scaled, modestly boosting rewards for values near 1 and significantly penalizing values close to 0 to more strongly discourage undesirable behaviors. 
 
 Due to computational and financial constraints associated with querying VLM APIs, we applied VLM feedback at regular intervals rather than at every timestep of the simulation. The implications of this decision are discussed more in the Challenges and Conclusion sections.
+
+\section{Results}
+
+\section{Discussion}
+
+\section{Conclusion}
 
 % this section can go at the end
 % Project Retrospective (all projects):
