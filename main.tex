@@ -130,7 +130,7 @@ To investigate the feasibility of using VLMs to mitigate reward hacking at train
 \item \textbf{MuJoCo Humanoid Walking}: The intended task is for the humanoid agent to walk forward efficiently. However, we designed a reward function that overly prioritized velocity without constraints on stability and control cost. As a result, the agent learned to throw itself forward rather than walking naturally. In another instance, the agent exploited minor instabilities in the physics engine by jittering rapidly in place, gaining reward without moving realistically.
 
 % TODO
-\item \textbf{MuJoCo Ant Jumping}:
+\item \textbf{MuJoCo Ant Jumping}: The intended task is for the ant agent to learn to jump straight up, with a proxy reward defined to maximize time spent with the torso in the air. The agent instead learned how to flip and "cartwheel", maximizing time spent with the torso above a height threshold, while never performing a true jumping motion.
 
 \item \textbf{Box2D Car Racing}: The car is tasked with navigating a race track efficiently. Instead, due to a reward function that emphasized velocity without harshly penalizing off-track movement, the agent learned to drive in tight circles near the starting area, accumulating reward without progressing through the course.
 \end{itemize}
