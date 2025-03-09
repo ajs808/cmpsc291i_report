@@ -129,17 +129,24 @@ Given their strong reasoning capabilities, VLMs offer a promising avenue for imp
 
 We assume that $Gpt(\pi)$ is a linear map to the true reward function $R_{\text{true}}(\pi)$, where $Gpt$ is the VLM-based reward function. Let $R_{\text{proxy}}(\pi)$ be a proxy for the reward function. Let $\mu$ and $\sigma$ represent changes in proxy reward across time steps. We define the threshold for reward hacking with a p-value:
 
-\begin{equation}
-    p = \operatorname{Jensen-Shannon}\big(Gpt(\pi) - R_{\text{proxy}}(\pi)\big)
-\end{equation}
+\[
+\text{Define the test statistic as:}
+\quad
+T(\pi)
+\;=\;
+\frac{
+  \mathrm{JS}\!\Bigl[Gpt(\pi)\,\big\|\;R_{\mathrm{proxy}}(\pi)\Bigr] 
+  \;-\; \mu
+}{
+  \sigma
+}.
+\]
 
-where $\alpha$ is a hyperparameter that controls the threshold at which the divergence in reward is deemed significant. We assume that the proxy reward differences follow a normal distribution with mean $\mu$ and standard deviation $\sigma$. We define reward hacking to occur if:
-
-\begin{equation}
-    \operatorname{Jensen-Shannon}\big(Gpt(\pi) - R_{\text{proxy}}(\pi)\big) > \mu + z_{\alpha} \sigma,
-\end{equation}
-
-indicating that the divergence exceeds the expected range of normal fluctuations, suggesting a significant deviation from the true reward signal.
+\[
+\text{If } T(\pi) \;>\; z_{\alpha},
+\quad
+\text{then we deem the divergence significant (indicative of reward hacking).}
+\]
 
 \subsection{Inducing Reward Hacking}
 To investigate the feasibility of using VLMs to mitigate reward hacking at train time, we first induced reward hacking in several environments. Specifically, we focused on three environments: MuJoCo Humanoid Walking, MuJoCo Ant Jumping, and Box2D Car Racing. We intentionally used poorly specified reward functions and trained agents using Proximal Policy Optimization (PPO) to get them to exhibit reward hacking behavior.
