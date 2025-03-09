@@ -123,6 +123,18 @@ A recent study by Baumli et al. \cite{baumli2024visionlanguagemodelssourcereward
 Given their strong reasoning capabilities, VLMs offer a promising avenue for improving reward design in RL. Unlike traditionally-defined rewards, which are prone to misspecification, VLMs provide an adaptive and context-aware evaluation mechanism. Baumli et al. demonstrate that VLMs can effectively assess whether an agent's behavior aligns with an objective specified in natural language. By incorporating VLM-based feedback into the reward function, we hypothesize that RL agents can be guided toward behaviors that better align with human intention. By integrating VLM-based signals into the RL pipelie, we aim to establish a more reliable and scalable method for mitigating reward hacking.
 
 \section{Methods}
+
+\subsection{Defining and Detecting Reward Hacking}
+\cite{pan2022effectsrewardmisspecificationmapping} observe that reward hacking occurs when RL agents exhibit phase transitions during training. Phase transitions are characterized by sharp changes in the agent's behavior, which optimize the proxy reward at the expense of the true reward. We attempt to quantify this definition with a measurable threshold between true and proxy reward to objectively characterize phase transitions.
+
+We assume that $Gpt(\pi)$ is a linear map to the true reward function $R_{\text{true}}(\pi)$, where $Gpt$ is the VLM-based reward function. Let $R_{\text{proxy}}(\pi)$ be a proxy for the reward function. Let $\mu$ and $\sigma$ represent changes in proxy reward across time steps. We define the threshold for reward hacking as:
+
+\begin{equation}
+    \epsilon = \operatorname{Jensen-Shannon}\big(Gpt(\pi) - R_{\text{proxy}}(\pi, \theta)\big)
+\end{equation}
+
+where $\theta$ is a hyperparameter that controls the confidence interval at which the divergence in reward is significant.
+
 \subsection{Inducing Reward Hacking}
 To investigate the feasibility of using VLMs to mitigate reward hacking at train time, we first induced reward hacking in several environments. Specifically, we focused on three environments: MuJoCo Humanoid Walking, MuJoCo Ant Jumping, and Box2D Car Racing. We intentionally used poorly specified reward functions and trained agents using Proximal Policy Optimization (PPO) to get them to exhibit reward hacking behavior.
 
