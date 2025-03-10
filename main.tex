@@ -203,6 +203,9 @@ Using a hosted VLM API (e.g., OpenAI's GPT models) introduced significant cost p
 \subsubsection{Frequency of VLM Feedback}
 Ideally, VLM evaluation would occur at every training step, but this incurs heavy computational overhead. Each step requires rolling out a trajectory, rendering it into a video and then image format, and querying the VLM. All of this substantially increases training time. If using an API, frequent queries further amplify costs. Reducing VLM feedback frequency (e.g., querying only every $x$ steps) mitigates these issues, but provides insufficient signal to meaningfully influence policy learning. Balancing these trade-offs was a challenge throughout our project execution, and remains an area to be explored.
 
+\subsubsection{VLM Reliability}
+Using off-the-shelf VLMs has the advantage of convenience and interoperability. Querying the VLM is as simple as making a REST API call, and models can be swapped out easily to balance cost and performance. However, this comes at the cost of the models being unspecialized and susceptible to hallucination. In one case, we found that OpenAI's GPT-4o was, on occasion, claiming that it "could not diretly analyze images", even after accurately assessing agent performance for hundreds of calls prior. When "unable" to evaluate the images, the VLM often output scores that were completely hypothetical (and thus meaningless to the agent). We expect that by fine-tuning VLMs on the task at hand (for example by providing synthetic simulation data), the performance of the pipeline would improve. 
+
 
 \section*{Unlabeled Section}
 Lorem
